@@ -1,5 +1,3 @@
-import OpenAI from 'openai'
-
 let selectedLanguage
 let userInputText
 
@@ -63,21 +61,18 @@ async function fetchTranslation(userInputText, selectedLanguage) {
             content: `${selectedLanguage} ${userInputText}`
         }
     ]
-    
-    try {
-        const openai = new OpenAI({
-            apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-            dangerouslyAllowBrowser: true
+
+    try {   
+        const url = 'https://openai-api-worker.noamguterman.workers.dev/'
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(messages),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-        const response = await openai.chat.completions.create({
-            model: 'gpt-4',
-            messages,
-            max_tokens: 64,
-            temperature: 0.5
-        })
-        
-        renderBotMessage(response.choices[0].message.content)
-        
+        const data = await response.json()
+        renderBotMessage(data.content)
     } catch(err) {
         console.log('Error:', err)
         alert('Unable to access AI. Please refresh and try again')
