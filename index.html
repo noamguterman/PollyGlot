@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PollyGlot</title>
+  </head>
+  <body>
+    <header>
+      <img src="/src/assets/parrot.png" />
+      <div>
+          <h1>PollyGlot</h1>
+          <p>Perfect Translation Every Time</p>
+      </div>
+    </header>
+    <main>
+        <div id="messages">
+            <p class="msg bot intro">Select the language you want me to translate into, 
+                type your text and hit send!
+            </p>
+        </div>
+        <div id="input">
+            <input id="input-txt" type="text" />
+            <button id="send-btn"><img src="/src/assets/send-btn.png" /></button>
+        </div>
+        <div id="languages">
+            <button class="btn-language" id="btn-fr">
+                <img 
+                    class="img-language" 
+                    id="img-fr" 
+                    data-language='fr' 
+                    src="/src/assets/fr-flag.png" />
+            </button>
+            <button class="btn-language" id="btn-sp">
+                <img 
+                    class="img-language" 
+                    id="img-sp" 
+                    data-language='sp' 
+                    src="/src/assets/sp-flag.png" />
+            </button>
+            <button class="btn-language" id="btn-jp">
+                <img 
+                    class="img-language" 
+                    id="img-jp" 
+                    data-language='jp' 
+                    src="/src/assets/jp-flag.png" />
+            </button>
+        </div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
