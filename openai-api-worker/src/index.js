@@ -14,7 +14,8 @@ export default {
 		}
 		
 		const openai = new OpenAI({
-			apiKey: env.OPENAI_API_KEY
+			apiKey: env.OPENAI_API_KEY,
+			baseURL: 'https://gateway.ai.cloudflare.com/v1/b0758b7460a85a7fc28c4d6e12675269/pollyglot/openai'
 		})
 		
 		try {
