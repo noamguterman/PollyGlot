@@ -12,6 +12,11 @@ export default {
 		if (request.method === 'OPTIONS') {
 			return new Response(null, { headers: corsHeaders });
 		}
+
+		// Only process POST requests
+		if (request.method !== 'POST') {
+			return new Response(JSON.stringify({ error: `${request.method} method not allowed.`}), { status: 405, headers: corsHeaders })
+		}
 		
 		const openai = new OpenAI({
 			apiKey: env.OPENAI_API_KEY,
@@ -30,7 +35,7 @@ export default {
 
 			return new Response(JSON.stringify(response), { headers: corsHeaders })
 		} catch(err) {
-			return new Response(err, { headers: corsHeaders })
+			return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: corsHeaders })
 		}
 	},
 }

@@ -72,6 +72,10 @@ async function fetchTranslation(userInputText, selectedLanguage) {
             }
         })
         const data = await response.json()
+
+        if (!response.ok) {
+            throw new Error(`Worker Error: ${data.error}`)
+        }
         renderBotMessage(data.content)
     } catch(err) {
         console.log('Error:', err)
